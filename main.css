@@ -118,7 +118,7 @@ body{
 .btn-urban-blue:hover, .btn-primary:hover{ transform:translateY(-2px) }
 /* Secundário (ghost claro) */
 .btn-ghost-light, .btn-outline-light{
-  background:rgba(255,255,255,.08); color:#fff; border:1.5px solid rgba(255,255,255,.66);
+  background:rgba(255, 255, 255, 0.96); color:#085cb4; border:1.5px solid rgba(255,255,255,.66);
   backdrop-filter:blur(3px);
   transition:background .2s, color .2s, transform .18s, box-shadow .25s;
 }
@@ -144,13 +144,13 @@ a.btn-whatsapp:hover{
 /* ============================== SERVIÇOS =============================== */
 /* Sem background colorido, menos afastado e alinhado ao padrão */
 .bg-services{
-  background:#fff;                         /* remove gradiente laranja */
+  background:#f7f7f7;                         /* remove gradiente laranja */
   color:var(--ink);
   padding-top: 20px;   
   padding-bottom: 60px; 
 }
-.section-title{ font-weight:800; font-size:var(--h2); color:var(--ink);}
-.solutions-subtitle{ color:var(--muted); margin: 0 auto var(--s-6); max-width:760px }
+.section-title{ font-weight:800; font-size:var(--h2); color:var(--ink);padding-bottom: 30px ;}
+/* .solutions-subtitle{ color:var(--muted); margin: 0 auto var(--s-6); max-width:760px } */
 
 /* Cards */
 .services-grid > [class*="col-"]{ display:flex }
@@ -178,51 +178,63 @@ a.btn-whatsapp:hover{
 }
 .service-cta:hover{ background:var(--brand-blue); color:#fff; transform:translateY(-1px) }
 
-/* Se quiser diferenciar ainda mais por serviço: */
-/* #btn-cupins{ border-color:#ff6434; color:#ff6434 } #btn-cupins:hover{ background:#ff6434 } */
 
 @media (min-width:992px){ .services-grid .col-lg-3{ flex:0 0 25%; max-width:25% } }
 @media (max-width:991px){ .services-grid .col-md-6{ flex:0 0 50%; max-width:50% } .service-media img{ height:160px } }
 @media (max-width:575px){ .services-grid > [class*="col-"]{ flex:0 0 100%; max-width:100% } .service-media img{ height:150px } }
 
 /* ============================= DEPOIMENTOS ============================= */
-/* Com título de seção destacado */
-.testimonials{
-  background:#f7f7f7;
-  padding-top: clamp(72px, 10vw, 120px); /* aumenta o respiro superior */
-}
-
-.testimonials {
-  padding-top: 40px;   /* novo valor */
-  padding-bottom: var(--section-pad-y); /* mantém o padrão */
-}
 
 .testimonials .section-title{
   font-weight:800; font-size:var(--h2); text-align:center; margin:0 0 40px; color:var(--ink)
 }
-.testimonials .section-subtitle{
-  text-align:center; color:var(--muted); margin:0 0 var(--s-6)
-}
-.t-card{
-  background:#fff; border:1px solid var(--line); border-radius:var(--r-lg);
-  padding:var(--s-5); height:100%; box-shadow:var(--shadow-0);
-  transition:transform .25s, box-shadow .25s, border-color .25s;
-}
-.t-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-1); border-color:#e1e6f0 }
-.t-stars{ color:#FFC107; letter-spacing:2px; font-size:18px; margin-bottom:8px }
-.t-text{ color:#2C2F3B; margin:0 0 8px }
-.t-author{ font-weight:700; color:#0F1222 }
-.t-note{ color:var(--muted); font-size:12px; margin-top:var(--s-3) }
 
-/* =============================== FECHAMENTO ============================== */
-/* .closing--light{
-   text-align:center;
-   background: #f7f7f7;
-} */
+/* Seção Depoimentos (prints) */
+.testimonials{
+  background:#fff;
+  padding-top: clamp(40px, 2vw, 70px);
+  padding-bottom: var(--section-pad-y);
+}
+
+.t-card--image{
+  padding: 0; 
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-0);
+  background: #fff;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.t-card--image:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-1);
+  border-color: #e1e6f0;
+}
+
+/* Wrapper com proporção consistente (evita layout shift)*/
+.t-img-wrap{
+  aspect-ratio: 16/9;              /* mantém todos os prints na mesma altura */
+  width: 100%;
+  background: #fff;
+} 
+
+/*Imagem do print: preenche o card sem cortar textos */
+.t-img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;              /* NÃO corta — mostra o print inteiro */
+  display: block;
+  background: #f8f4fc;
+}
+
+/* =========================== FECHAMENTO =========================== */
+
+
 .closing--light{
   padding-block: clamp(40px, 5vw, 70px) !important; /* top e bottom */
   text-align: center;
-  background: #fff;
+  background: #f7f7F7;
 }
 .closing-title{margin:0 0 18px !important;}
 .closing-sub{margin:0 0 28px !important;}
@@ -235,9 +247,28 @@ a.btn-whatsapp:hover{
 /* Caixa opcional */
 .closing-box{
   margin-inline:auto; max-width:920px;
-  background:#fff; border:1px solid var(--line);
+  background:#FFF; border:1px solid var(--line);
   border-radius:24px; padding:38px 28px; box-shadow:var(--shadow-1);
 }
+
+/* Botão outline azul para "Ligar agora" (combina com a paleta) */
+.btn-call{
+  border: 2px solid var(--brand-blue);
+  background: #085CB4;
+  color: #FFF;
+  transition: background .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.btn-call:hover{
+  background: var(--brand-blue);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* garante layout lado a lado e bom espaçamento (você já tem, mas reforçando) */
+.closing-ctas{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+}
+
 
 /* =========================== WHATSAPP FLOAT =========================== */
 .whatsapp-float{
@@ -294,7 +325,7 @@ a.btn-whatsapp:hover{
 
 /* ================================= FOOTER ================================ */
 footer{
-  background:#f7f7f7;
+  background:#fff;
   padding: var(--s-5) 0;
   font-size:14px;
   /* border-top:1px solid var(--line); */
